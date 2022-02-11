@@ -178,17 +178,20 @@ function App() {
 
 	return (
 		<div className="App">
+			<h1 className="header ">Let's build a cool dApp on Hedera!</h1>
 			<MyButton fcn={tokenCreate} text={"Create New Token"} />
-			<p>{createTextState}</p>
+			<p className="sub-text">{createTextState}</p>
 			{/*  */}
 			<MyButton fcn={tokenMint} text={"Mint New Tokens"} />
-			<p>{mintTextState}</p>
+			<p className="sub-text">{mintTextState}</p>
 			{/*  */}
 			<MyButton fcn={contractDeploy} text={"Deploy Contract"} />
-			<p>{contractTextState}</p>
+			<p className="sub-text">{contractTextState}</p>
 			{/*  */}
 			<MyButton fcn={contractTokenTransfer} text={"Transfer Tokens to Contract"} />
-			<p>{""}</p>
+			<p className="sub-text">{""}</p>
+			{/*  */}
+			<img src={require("./assets/hederaLogo.png")} alt="Hedera" />
 		</div>
 	);
 }

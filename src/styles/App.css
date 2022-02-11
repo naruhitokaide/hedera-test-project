@@ -1,6 +1,6 @@
 .App {
 	height: 100vh;
-	background-color: #d7dadf;
+	background-color: #000000;
 	overflow: scroll;
 	text-align: center;
 }
@@ -15,12 +15,15 @@
 
 .header-container {
 	padding-top: 30px;
+	padding-bottom: 30px;
+	background-color: #8d0eb8;
 }
 
 .header {
-	margin: 0;
+	margin: 50px;
 	font-size: 50px;
 	font-weight: bold;
+	color: rgb(209, 12, 235);
 }
 
 .sub-text {
@@ -46,19 +49,10 @@
 	font-size: 16px;
 	font-weight: bold;
 	color: white;
-}
 
-.connect-wallet-button {
-	background: -webkit-linear-gradient(left, #60c657, #35aee2);
-	background-size: 200% 200%;
+	background: -webkit-linear-gradient(left, #dc5de0, #650cad);
+	background-size: 100% 100%;
 	animation: gradient-animation 4s ease infinite;
-}
-
-.mint-button {
-	background: -webkit-linear-gradient(left, #a200d6, #ff6fdf);
-	background-size: 200% 200%;
-	animation: gradient-animation 4s ease infinite;
-	margin-right: 15px;
 }
 
 .opensea-button {
@@ -78,9 +72,9 @@
 	padding-bottom: 30px;
 }
 
-.twitter-logo {
-	width: 35px;
-	height: 35px;
+.hedera-logo {
+	width: 428px;
+	height: 138px;
 }
 
 .footer-text {
