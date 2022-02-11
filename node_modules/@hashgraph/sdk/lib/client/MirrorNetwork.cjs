@@ -1,0 +1,105 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _MirrorNode = _interopRequireDefault(require("../MirrorNode.cjs"));
+
+var _ManagedNetwork = _interopRequireDefault(require("./ManagedNetwork.cjs"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * @typedef {import("../channel/MirrorChannel.js").default} MirrorChannel
+ */
+
+/**
+ * @augments {ManagedNetwork<MirrorChannel, MirrorNode, string>}
+ */
+class MirrorNetwork extends _ManagedNetwork.default {
+  /**
+   * @param {(address: string) => MirrorChannel} channelInitFunction
+   */
+  constructor(channelInitFunction) {
+    super(channelInitFunction);
+  }
+  /**
+   * @param {string[]} network
+   */
+
+
+  setNetwork(network) {
+    // eslint-disable-next-line ie11/no-collection-args
+    this._setNetwork(new Map(network.map(address => [address, address])));
+  }
+  /**
+   * @returns {string[]}
+   */
+
+
+  get network() {
+    /**
+     * @type {string[]}
+     */
+    var n = []; // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+    for (const node of this._nodes) {
+      n.push(node.address.toString());
+    }
+
+    return n;
+  }
+  /**
+   * @abstract
+   * @param {[string, string]} entry
+   * @returns {MirrorNode}
+   */
+
+
+  _createNodeFromNetworkEntry(entry) {
+    return new _MirrorNode.default({
+      newNode: {
+        address: entry[1],
+        channelInitFunction: this._createNetworkChannel
+      }
+    }).setMinBackoff(this._minBackoff);
+  }
+  /**
+   * @abstract
+   * @param {Map<string, string>} network
+   * @returns {number[]}
+   */
+
+
+  _getNodesToRemove(network) {
+    const indexes = [];
+    const values = Object.values(network);
+
+    for (let i = this._nodes.length - 1; i >= 0; i--) {
+      const node = this._nodes[i];
+
+      if (!values.includes(node.address.toString())) {
+        indexes.push(i);
+      }
+    }
+
+    return indexes;
+  }
+  /**
+   * @returns {MirrorNode}
+   */
+
+
+  getNextMirrorNode() {
+    if (this._createNetworkChannel == null) {
+      throw new Error("mirror network not supported on browser");
+    }
+
+    return this._getNumberOfMostHealthyNodes(1)[0];
+  }
+
+}
+
+exports.default = MirrorNetwork;

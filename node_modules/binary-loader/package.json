@@ -1,0 +1,19 @@
+{
+	"name": "binary-loader",
+	"version": "0.0.1",
+	"author": {
+        "name": "Martijn Vermaat",
+        "email": "martijn@vermaat.name"
+    },
+	"description": "Binary loader module for webpack",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/martijnvermaat/binary-loader.git"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://www.opensource.org/licenses/mit-license.php"
+		}
+	]
+}

@@ -1,0 +1,74 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _AccountId = _interopRequireDefault(require("../account/AccountId.cjs"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * @namespace proto
+ * @typedef {import("@hashgraph/proto").ICustomFee} proto.ICustomFee
+ */
+class CustomFee {
+  /**
+   * @param {object} props
+   * @param {AccountId | string} [props.feeCollectorAccountId]
+   */
+  constructor(props = {}) {
+    /**
+     * @type {?AccountId}
+     */
+    this._feeCollectorAccountId;
+
+    if (props.feeCollectorAccountId != null) {
+      this.setFeeCollectorAccountId(props.feeCollectorAccountId);
+    }
+  }
+  /**
+   * @returns {?AccountId}
+   */
+
+
+  get feeCollectorAccountId() {
+    return this._feeCollectorAccountId;
+  }
+  /**
+   * @param {AccountId | string} feeCollectorAccountId
+   * @returns {this}
+   */
+
+
+  setFeeCollectorAccountId(feeCollectorAccountId) {
+    this._feeCollectorAccountId = typeof feeCollectorAccountId === "string" ? _AccountId.default.fromString(feeCollectorAccountId) : feeCollectorAccountId;
+    return this;
+  }
+  /**
+   * @internal
+   * @abstract
+   * @param {proto.ICustomFee} info
+   * @returns {CustomFee}
+   */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
+
+  static _fromProtobuf(info) {
+    throw new Error("not implemented");
+  }
+  /**
+   * @internal
+   * @abstract
+   * @returns {proto.ICustomFee}
+   */
+
+
+  _toProtobuf() {
+    throw new Error("not implemented");
+  }
+
+}
+
+exports.default = CustomFee;

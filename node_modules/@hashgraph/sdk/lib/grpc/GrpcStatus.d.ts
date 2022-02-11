@@ -1,0 +1,44 @@
+declare class GrpcStatus {
+    /**
+     * @internal
+     * @param {number} code
+     * @returns {GrpcStatus}
+     */
+    static _fromValue(code: number): GrpcStatus;
+    /**
+     * @hideconstructor
+     * @internal
+     * @param {number} code
+     */
+    constructor(code: number);
+    /** @readonly */
+    readonly _code: number;
+    /**
+     * @returns {string}
+     */
+    toString(): string;
+    /**
+     * @returns {number}
+     */
+    valueOf(): number;
+}
+declare namespace GrpcStatus {
+    const Ok: GrpcStatus;
+    const Cancelled: GrpcStatus;
+    const Unknown: GrpcStatus;
+    const InvalidArgument: GrpcStatus;
+    const DeadlineExceeded: GrpcStatus;
+    const NotFound: GrpcStatus;
+    const AlreadyExists: GrpcStatus;
+    const PermissionDenied: GrpcStatus;
+    const Unauthenticated: GrpcStatus;
+    const ResourceExhausted: GrpcStatus;
+    const FailedPrecondition: GrpcStatus;
+    const Aborted: GrpcStatus;
+    const OutOfRange: GrpcStatus;
+    const Unimplemented: GrpcStatus;
+    const Internal: GrpcStatus;
+    const Unavailable: GrpcStatus;
+    const DataLoss: GrpcStatus;
+}
+export default GrpcStatus;

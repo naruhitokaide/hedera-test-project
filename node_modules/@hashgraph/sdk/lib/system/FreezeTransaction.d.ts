@@ -1,0 +1,170 @@
+/**
+ * @namespace proto
+ * @typedef {import("@hashgraph/proto").ITransaction} proto.ITransaction
+ * @typedef {import("@hashgraph/proto").ISignedTransaction} proto.ISignedTransaction
+ * @typedef {import("@hashgraph/proto").TransactionBody} proto.TransactionBody
+ * @typedef {import("@hashgraph/proto").ITransactionBody} proto.ITransactionBody
+ * @typedef {import("@hashgraph/proto").ITransactionResponse} proto.ITransactionResponse
+ * @typedef {import("@hashgraph/proto").IFreezeTransactionBody} proto.IFreezeTransactionBody
+ */
+/**
+ * @typedef {import("../channel/Channel.js").default} Channel
+ * @typedef {import("../account/AccountId.js").default} AccountId
+ * @typedef {import("../transaction/TransactionId.js").default} TransactionId
+ */
+/**
+ * @typedef {object} HourMinute
+ * @property {number} hour
+ * @property {number} minute
+ */
+export default class FreezeTransaction extends Transaction {
+    /**
+     * @internal
+     * @param {proto.ITransaction[]} transactions
+     * @param {proto.ISignedTransaction[]} signedTransactions
+     * @param {TransactionId[]} transactionIds
+     * @param {AccountId[]} nodeIds
+     * @param {proto.ITransactionBody[]} bodies
+     * @returns {FreezeTransaction}
+     */
+    static _fromProtobuf(transactions: proto.ITransaction[], signedTransactions: proto.ISignedTransaction[], transactionIds: TransactionId[], nodeIds: AccountId[], bodies: proto.ITransactionBody[]): FreezeTransaction;
+    /**
+     * @param {Object} [props]
+     * @param {HourMinute} [props.startTime]
+     * @param {HourMinute} [props.endTime]
+     * @param {Timestamp} [props.startTimestamp]
+     * @param {FileId} [props.updateFileId]
+     * @param {FileId} [props.fileId]
+     * @param {Uint8Array | string} [props.fileHash]
+     * @param { FreezeType } [props.freezeType]
+     */
+    constructor(props?: {
+        startTime?: HourMinute | undefined;
+        endTime?: HourMinute | undefined;
+        startTimestamp?: Timestamp | undefined;
+        updateFileId?: FileId | undefined;
+        fileId?: FileId | undefined;
+        fileHash?: string | Uint8Array | undefined;
+        freezeType?: FreezeType | undefined;
+    } | undefined);
+    /**
+     * @private
+     * @type {?HourMinute}
+     */
+    private _startTime;
+    /**
+     * @private
+     * @type {?Timestamp}
+     */
+    private _startTimestamp;
+    /**
+     * @private
+     * @type {?HourMinute}
+     */
+    private _endTime;
+    /**
+     * @private
+     * @type {?FileId}
+     */
+    private _fileId;
+    /**
+     * @private
+     * @type {?Uint8Array}
+     */
+    private _fileHash;
+    /**
+     * @private
+     * @type {?FreezeType}
+     */
+    private _freezeType;
+    /**
+     * @deprecated - Use `startTimestamp` instead
+     * @returns {?HourMinute}
+     */
+    get startTime(): HourMinute | null;
+    /**
+     * @deprecated - Use `startTimestamp` instead
+     * @param {number | string} startHourOrString
+     * @param {?number} startMinute
+     * @returns {FreezeTransaction}
+     */
+    setStartTime(startHourOrString: number | string, startMinute: number | null): FreezeTransaction;
+    /**
+     * @returns {?Timestamp}
+     */
+    get startTimestamp(): Timestamp | null;
+    /**
+     * @param {Timestamp} startTimestamp
+     * @returns {FreezeTransaction}
+     */
+    setStartTimestamp(startTimestamp: Timestamp): FreezeTransaction;
+    /**
+     * @deprecated
+     * @returns {?HourMinute}
+     */
+    get endTime(): HourMinute | null;
+    /**
+     * @deprecated
+     * @param {number | string} endHourOrString
+     * @param {?number} endMinute
+     * @returns {FreezeTransaction}
+     */
+    setEndTime(endHourOrString: number | string, endMinute: number | null): FreezeTransaction;
+    /**
+     * @deprecated - Use `fileId` instead
+     * @returns {?FileId}
+     */
+    get updateFileId(): FileId | null;
+    /**
+     * @deprecated - Use `setFileId()` instead
+     * @param {FileId} updateFileId
+     * @returns {FreezeTransaction}
+     */
+    setUpdateFileId(updateFileId: FileId): FreezeTransaction;
+    /**
+     * @returns {?FileId}
+     */
+    get fileId(): FileId | null;
+    /**
+     * @param {FileId} fileId
+     * @returns {FreezeTransaction}
+     */
+    setFileId(fileId: FileId): FreezeTransaction;
+    /**
+     * @returns {?Uint8Array}
+     */
+    get fileHash(): Uint8Array | null;
+    /**
+     * @param {Uint8Array | string} fileHash
+     * @returns {FreezeTransaction}
+     */
+    setFileHash(fileHash: Uint8Array | string): FreezeTransaction;
+    /**
+     * @returns {?FreezeType}
+     */
+    get freezeType(): FreezeType | null;
+    /**
+     * @param {FreezeType} freezeType
+     * @returns {FreezeTransaction}
+     */
+    setFreezeType(freezeType: FreezeType): FreezeTransaction;
+}
+export namespace proto {
+    type ITransaction = import("@hashgraph/proto").ITransaction;
+    type ISignedTransaction = import("@hashgraph/proto").ISignedTransaction;
+    type TransactionBody = import("@hashgraph/proto").TransactionBody;
+    type ITransactionBody = import("@hashgraph/proto").ITransactionBody;
+    type ITransactionResponse = import("@hashgraph/proto").ITransactionResponse;
+    type IFreezeTransactionBody = import("@hashgraph/proto").IFreezeTransactionBody;
+}
+export type Channel = import("../channel/Channel.js").default;
+export type AccountId = import("../account/AccountId.js").default;
+export type TransactionId = import("../transaction/TransactionId.js").default;
+export type HourMinute = {
+    hour: number;
+    minute: number;
+};
+import Transaction from "../transaction/Transaction.js";
+import Timestamp from "../Timestamp.js";
+import FileId from "../file/FileId.js";
+import FreezeType from "../FreezeType.js";
