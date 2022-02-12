@@ -36,7 +36,7 @@ async function contractTokenTransferFcn(tokenId, contractId) {
 	console.log(`- Token transfer from Operator to contract: ${contractExecRx2.status.toString()}`);
 
 	const bCheck = await new AccountBalanceQuery().setAccountId(operatorId).execute(client);
-	console.log(`- Treasury balance: ${bCheck.tokens._map.get(tokenId.toString())} units of token ${tokenId}`);
+	console.log(`- Operator balance: ${bCheck.tokens._map.get(tokenId.toString())} units of token ${tokenId}`);
 
 	const cCheck = await new ContractInfoQuery().setContractId(contractId).execute(client);
 	console.log(
