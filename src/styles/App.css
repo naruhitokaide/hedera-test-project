@@ -1,13 +1,18 @@
 .App {
 	height: 100vh;
 	background-color: #000000;
-	overflow: scroll;
+	overflow: hidden;
 	text-align: center;
+
+	background-image: url(../assets/colors.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 .container {
 	height: 100%;
-	background-color: #0d1116;
+	background-color: #1366cb;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -21,14 +26,16 @@
 
 .header {
 	margin: 50px;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 50px;
 	font-weight: bold;
-	color: rgb(209, 12, 235);
+	color: rgb(255, 255, 255);
 }
 
 .sub-text {
 	font-size: 25px;
 	color: white;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 .gradient-text {
@@ -39,20 +46,28 @@
 }
 
 .cta-button {
-	height: 45px;
-	border: 0;
-	width: auto;
-	padding-left: 40px;
-	padding-right: 40px;
-	border-radius: 5px;
+	display: inline-block;
+	border: 1px solid white;
+	height: 35px;
+	width: 175px;
+	border-radius: 15px;
+	box-sizing: border-box;
+	padding: 0 20px;
+	font-weight: 500;
+	text-decoration: none;
+	font-size: 9px;
+	text-transform: uppercase;
+	letter-spacing: 1.33px;
+	line-height: 28px;
+	text-align: center;
 	cursor: pointer;
-	font-size: 16px;
-	font-weight: bold;
+	outline: none;
+	font-family: sans-serif;
+	transition: all 0.1 ease-out;
+}
+.cta-button:hover {
+	background: none;
 	color: white;
-
-	background: -webkit-linear-gradient(left, #dc5de0, #650cad);
-	background-size: 100% 100%;
-	animation: gradient-animation 4s ease infinite;
 }
 
 .opensea-button {

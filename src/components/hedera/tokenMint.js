@@ -1,34 +1,25 @@
-import React from "react";
-import operator from "../../config.js";
-import {
-	Client,
-	AccountId,
-	PrivateKey,
-	TokenCreateTransaction,
-	TokenMintTransaction,
-	FileCreateTransaction,
-	ContractCreateTransaction,
-	ContractFunctionParameters,
-	ContractExecuteTransaction,
-	TokenInfoQuery,
-	AccountBalanceQuery,
-	Hbar,
-	ContractInfoQuery,
-} from "@hashgraph/sdk";
+import { TokenMintTransaction } from "@hashgraph/sdk";
 
-async function tokenMintFcn(tId) {
-	const operatorId = AccountId.fromString(operator.id);
-	const operatorKey = PrivateKey.fromString(operator.pvkey);
-	const client = Client.forTestnet().setOperator(operatorId, operatorKey);
+async function tokenMintFcn(walletData, accountId, tId) {
+	console.log(`\n=======================================`);
+	const amount = 100;
+	console.log(`- Minting ${amount} tokens...`);
 
-	console.log("- Minting new tokens!");
-	const tokenMintTx = new TokenMintTransaction().setTokenId(tId).setAmount(100).freezeWith(client);
-	const tokenMintSign = await tokenMintTx.sign(operatorKey);
-	const tokenMintSubmit = await tokenMintSign.execute(client);
-	const tokenMintRec = await tokenMintSubmit.getRecord(client);
-	const supply = tokenMintRec.receipt.totalSupply;
+	const hashconnect = walletData[0];
+	const saveData = walletData[1];
+	const provider = hashconnect.getProvider("testnet", saveData.topic, accountId);
+	const signer = hashconnect.getSigner(provider);
 
-	return supply;
+	const tokenMintTx = await new TokenMintTransaction()
+		.setTokenId(tId)
+		.setAmount(amount)
+		.freezeWithSigner(signer);
+	const tokenMintSubmit = await tokenMintTx.executeWithSigner(signer);
+	const tokenCreateRx = await provider.getTransactionReceipt(tokenMintSubmit.transactionId);
+	const supply = tokenCreateRx.totalSupply;
+	console.log(`- Tokens minted. New supply is ${supply}`);
+
+	return [supply, tokenMintSubmit.transactionId];
 }
 
 export default tokenMintFcn;
