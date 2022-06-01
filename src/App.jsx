@@ -28,14 +28,14 @@ function App() {
 
 	async function connectWallet() {
 		if (accountId !== undefined) {
-			setConnectTextSt(`🔌Account ${accountId} already connected ⚡ ✅`);
+			setConnectTextSt(`🔌 Account ${accountId} already connected ⚡ ✅`);
 		} else {
 			const wData = await walletConnectFcn();
 			wData[0].pairingEvent.once((pairingData) => {
 				pairingData.accountIds.forEach((id) => {
 					setAccountId(id);
 					console.log(`- Paired account id: ${id}`);
-					setConnectTextSt(`🔌Account ${id} connected ⚡ ✅`);
+					setConnectTextSt(`🔌 Account ${id} connected ⚡ ✅`);
 					setConnectLinkSt(`https://hashscan.io/#/testnet/account/${id}`);
 				});
 			});
@@ -108,35 +108,35 @@ function App() {
 
 	return (
 		<div className="App">
-			<h1 className="header">Let's build a dapp on Hedera!</h1>
+			<h1 className="header">Let's buidl a dapp on Hedera!</h1>
 			<MyGroup
 				fcn={connectWallet}
 				buttonLabel={"Connect Wallet"}
 				text={connectTextSt}
 				link={connectLinkSt}
 			/>
-			
+
 			<MyGroup
 				fcn={tokenCreate}
 				buttonLabel={"Create New Token"}
 				text={createTextSt}
 				link={createLinkSt}
 			/>
-			
+
 			<MyGroup
 				fcn={tokenMint}
 				buttonLabel={"Mint 100 New Tokens"}
 				text={mintTextSt}
 				link={mintLinkSt}
 			/>
-			
+
 			<MyGroup
 				fcn={contractDeploy}
 				buttonLabel={"Deploy Contract"}
 				text={contractTextSt}
 				link={contractLinkSt}
 			/>
-			
+
 			<MyGroup
 				fcn={contractExecute}
 				buttonLabel={"Transfer Tokens"}
@@ -145,9 +145,17 @@ function App() {
 			/>
 			<div className="logo">
 				<div className="symbol">
-					<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+					<svg
+						id="Layer_1"
+						data-name="Layer 1"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 40 40"
+					>
 						<path d="M20 0a20 20 0 1 0 20 20A20 20 0 0 0 20 0" className="circle"></path>
-						<path d="M28.13 28.65h-2.54v-5.4H14.41v5.4h-2.54V11.14h2.54v5.27h11.18v-5.27h2.54zm-13.6-7.42h11.18v-2.79H14.53z" className="h"></path>
+						<path
+							d="M28.13 28.65h-2.54v-5.4H14.41v5.4h-2.54V11.14h2.54v5.27h11.18v-5.27h2.54zm-13.6-7.42h11.18v-2.79H14.53z"
+							className="h"
+						></path>
 					</svg>
 				</div>
 				<span>Hedera</span>
