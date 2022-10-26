@@ -14,7 +14,7 @@ function App() {
 	const [tokenSupply, setTokenSupply] = useState();
 	const [contractId, setContractId] = useState();
 
-	const [connectTextSt, setConnectTextSt] = useState("🔌 Connect here...");
+	const [connectTextSt, setConnectTextSt] = useState("Connect here...");
 	const [createTextSt, setCreateTextSt] = useState("");
 	const [mintTextSt, setMintTextSt] = useState("");
 	const [contractTextSt, setContractTextSt] = useState();
@@ -28,14 +28,14 @@ function App() {
 
 	async function connectWallet() {
 		if (accountId !== undefined) {
-			setConnectTextSt(`🔌 Account ${accountId} already connected ⚡ ✅`);
+			setConnectTextSt(`Account ${accountId} already connected!`);
 		} else {
 			const wData = await walletConnectFcn();
 			wData[0].pairingEvent.once((pairingData) => {
 				pairingData.accountIds.forEach((id) => {
 					setAccountId(id);
 					console.log(`- Paired account id: ${id}`);
-					setConnectTextSt(`🔌 Account ${id} connected ⚡ ✅`);
+					setConnectTextSt(`Account ${id} connected`);
 					setConnectLinkSt(`https://hashscan.io/#/testnet/account/${id}`);
 				});
 			});
@@ -108,14 +108,14 @@ function App() {
 
 	return (
 		<div className="App">
-			<h1 className="header">Let's buidl a dapp on Hedera!</h1>
+			<h1 className="header">This is a test project for pacbar</h1>
 			<MyGroup
 				fcn={connectWallet}
 				buttonLabel={"Connect Wallet"}
 				text={connectTextSt}
 				link={connectLinkSt}
 			/>
-
+{/* 
 			<MyGroup
 				fcn={tokenCreate}
 				buttonLabel={"Create New Token"}
@@ -142,8 +142,8 @@ function App() {
 				buttonLabel={"Transfer Tokens"}
 				text={trasnferTextSt}
 				link={trasnferLinkSt}
-			/>
-			<div className="logo">
+			/> */}
+			{/* <div className="logo">
 				<div className="symbol">
 					<svg
 						id="Layer_1"
@@ -159,7 +159,7 @@ function App() {
 					</svg>
 				</div>
 				<span>Hedera</span>
-			</div>
+			</div> */}
 		</div>
 	);
 }
